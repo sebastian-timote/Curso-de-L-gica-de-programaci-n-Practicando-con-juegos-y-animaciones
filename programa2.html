@@ -1,0 +1,27 @@
+<meta charset="UTF-8">
+
+<canvas width="600" height="400"></canvas>
+<script type="text/javascript">
+
+    function crearCuadroConBorde(colorcuadro, xCuadro, yCuadro, wCuadro, hCuadro) {
+        var pantalla = document.querySelector("canvas")
+        var pincel = pantalla.getContext("2d")
+        pincel.fillStyle = colorcuadro
+        pincel.fillRect(xCuadro,yCuadro,wCuadro,hCuadro)
+        //bordes del cuadro
+        pincel.strokeStyle = "black"
+        pincel.strokeRect(xCuadro,yCuadro,wCuadro,hCuadro)
+    }
+
+    var x = 0
+    //crea cuadros a lo largo del height del canvas
+    while (x < 600) {
+        
+    crearCuadroConBorde("yellow",x,0,50,50)
+    crearCuadroConBorde("blue",x,50,50,50)
+    crearCuadroConBorde("green",x,100,50,50)
+    crearCuadroConBorde("green",x,150,50,50)
+    crearCuadroConBorde("magenta",x,200,50,50)
+    x = x + 50
+    }
+    </script>

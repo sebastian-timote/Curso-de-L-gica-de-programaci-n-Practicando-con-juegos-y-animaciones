@@ -1,0 +1,58 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+    let serie2009 = [6, 47, 41, 3, 3];
+    let serie2019 = [81, 9, 3, 3, 4];
+    let serie2023 = [77, 7.7, 5.8, 8.9, 0.6];
+
+    let colores = ["blue","green","yellow", "red","gray"];
+    let navegadores = ["Chrome", "Firefox", "Edge", "Safari", "Otros"]
+
+    dibujarRectangulo(0,0,600,400,"lightgrey")
+    function dibujarRectangulo(x, y, base, altura, color) {
+        var pantalla = document.querySelector("canvas");
+        var pincel = pantalla.getContext("2d");
+
+        pincel.fillStyle=color;
+        pincel.fillRect(x,y, base, altura);
+        pincel.strokeStyle="black";
+        pincel.strokeRect(x,y, base, altura);
+    }
+    function escribirTexto(x , y, texto) {
+        var pantalla = document.querySelector("canvas");
+        var pincel = pantalla.getContext("2d");
+
+        pincel.font="15px Georgia";
+        pincel.fillStyle="black";
+        pincel.fillText(texto, x, y);
+    }
+    function dibujarBarra(x, y, serie, colores, texto) {
+        let yTextoBarra = y - 15
+        for (let index = 0; index < serie.length; index++) {
+            let alturaBarra = serie[index]
+            dibujarRectangulo(x, y, 50, serie[index], colores[index])
+            y = y + alturaBarra
+        }
+        escribirTexto(x, yTextoBarra, texto)
+    }
+    function dibujarTextoBarra(x, y, etiquetas, serie, colores) {
+        let yTextRect = y - 10
+        let xText = x + 20
+        let etiqueta = ""
+        for (let index = 0; index < serie.length; index++) {
+            y = y + 30
+            yTextRect = yTextRect + 30
+            etiqueta = etiquetas[index] + " " + serie[index] + " %"
+            dibujarRectangulo(x, yTextRect, 10, 10 ,colores[index])
+            escribirTexto(xText, y, etiqueta)
+        }
+    }
+
+    dibujarBarra(50, 50, serie2009, colores, "2009")
+    dibujarTextoBarra(50, 150, navegadores, serie2009, colores)
+    dibujarBarra(200, 50, serie2019, colores, "2019")
+    dibujarTextoBarra(200, 150, navegadores, serie2019, colores)
+    dibujarBarra(350, 50, serie2023, colores, "2023")
+    dibujarTextoBarra(350, 150, navegadores, serie2023, colores)
+
+</script>
