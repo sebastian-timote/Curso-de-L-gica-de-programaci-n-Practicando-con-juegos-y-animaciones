@@ -1,0 +1,35 @@
+<!--el programa crea una circunferencia que se mueve del lado derecho al izq y viceversa-->
+<meta charset="UTF-8">
+
+<canvas width="600" height="400"></canvas>
+<script type="text/javascript">
+        var pantalla = document.querySelector("canvas")
+        var pincel = pantalla.getContext("2d")
+        pincel.fillStyle = "lightgrey"
+        pincel.fillRect(0,0,600,400)
+        
+        let puedoDibujar = false
+
+    function dibujarCirculo(event) {
+        if (puedoDibujar) {
+            let x = event.pageX - pantalla.offsetLeft
+            let y = event.pageY - pantalla.offsetTop
+            pincel.fillStyle = "blue"
+            pincel.beginPath();
+            pincel.arc(x,y,5,0,2*Math.PI)
+            pincel.fill()
+        }
+    }
+    pantalla.onmousemove = dibujarCirculo
+
+    function  habilitarDibujar() {
+        puedoDibujar = true
+    }
+    function  deshabilitarDibujar() {
+        puedoDibujar = false
+    }
+
+    pantalla.onmousedown = habilitarDibujar
+    pantalla.onmouseup = deshabilitarDibujar
+    </script>
+
